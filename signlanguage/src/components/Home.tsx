@@ -10,17 +10,20 @@ return(
     <br></br>
     <h2 style={styles.headingStyle}>Our Mission</h2>
     <p style={styles.paragraphStyle}>
-        Our mission is blah blah blah
+        At ASLearn, our goal is ACCESSIBILITY, SUPPORT, and LEARNING! We want to make it easier for YOU to learn ASL no matter your circumstance.
+        Whether you are a beginner just starting out or longtime ASL fluent brushing up on your skills, our platform provides clear lessons and tools
+        to guide you every step of the way. Learning ASL should be fun and achievable for everyone, and that is what we are here to make happen❤️.
     </p>
 
     <div
         style={{
             display:"flex",
             justifyContent: "center",
-            gap: "40px",
+            gap: "42px",
             marginTop: "40px"
         }}
         >
+    <CircleFeature featureName="Alphabet" />
     <CircleFeature featureName="Family" />
     <CircleFeature featureName="Work and Professional" />
     </div>
@@ -35,7 +38,7 @@ const styles: {[key:string]: CSSProperties} = {
         display: "flex",
         flexDirection: "column",
         alignItems: "center",
-        justifyContent: "center",
+        justifyContent: "flex-start",
         padding: "20px",
         fontSize: "32px",
         fontFamily: "Comic Sans MS, Comic Sans, cursive",
@@ -43,14 +46,19 @@ const styles: {[key:string]: CSSProperties} = {
 
     },
     headingStyle: {
-    fontSize: '1.5rem',
+    fontSize: '32px',
     color: '#5A3E2B',
+    marginTop: 0,
+    marginBottom: 10, 
   },
   paragraphStyle: {
     marginTop: "20px",
     color:"#5A3E2B",
-    fontSize: "28px",
-    fontWeight:"bold",
+    fontSize: "24px",
+    width: "1000px",
+     marginLeft: "auto",
+  marginRight: "auto",
+  textAlign: "center",
   }
 
 }

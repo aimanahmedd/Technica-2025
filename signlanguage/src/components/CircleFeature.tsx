@@ -26,8 +26,8 @@ const styles:{[key:string]: CSSProperties} = {
         margin: "20px"
     },
     circlestyle:{
-        width: "100px",
-          height: "100px",
+        width: "190px",
+          height: "150px",
           borderRadius: "50%",
           backgroundColor: "#ccc",
           display: "flex",
@@ -38,8 +38,8 @@ const styles:{[key:string]: CSSProperties} = {
           margin: "0 auto",
     },
     forFeature:{
-marginTop: "10px",
- fontSize: "1rem",
-  color: "#333"
+    marginTop: "10px",
+    fontSize: "1rem",
+  color: "#5A3E2B"
     }
 }

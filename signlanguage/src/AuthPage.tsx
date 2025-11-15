@@ -12,12 +12,10 @@ export default function AuthPage() {
     confirm: "",
   });
 
-  // Handle field updates
   const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
-  // SIGN UP
   const handleSignup = async () => {
     if (form.password !== form.confirm)
       return alert("Passwords do not match!");
@@ -41,7 +39,6 @@ export default function AuthPage() {
     }
   };
 
-  // LOGIN
   const handleLogin = async () => {
     const { data, error } = await supabase.auth.signInWithPassword({
       email: form.username + "@example.com",
@@ -51,8 +48,6 @@ export default function AuthPage() {
     if (error) alert(error.message);
     else {
       alert("Logged in!");
-      // Redirect or dashboard logic:
-      // window.location.href = "/dashboard";
     }
   };
 

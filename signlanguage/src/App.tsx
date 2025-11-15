@@ -1,7 +1,12 @@
-import AuthPage from "./AuthPage";
+import TestPage from "./TestPage";
 
 function App() {
-  return <AuthPage />;
+  return (
+    <div>
+      <TestPage /> 
+    </div>
+  );
 }
 
 export default App;
+

@@ -65,6 +65,6 @@ navBarButton:{
   cursor: "pointer"
 
 }
-}
-
+};
 export default App;
+

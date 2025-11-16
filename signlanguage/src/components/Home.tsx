@@ -1,5 +1,6 @@
 import React, { CSSProperties } from "react";
 import { CircleFeature } from "./CircleFeature";
+import ScoreDisplay from "./ScoreDisplay";
 
 
 export const Home = () => {
@@ -23,7 +24,7 @@ return(
             marginTop: "40px"
         }}
         >
-    <CircleFeature featureName="Alphabet" />
+    <div><ScoreDisplay/></div>
     <CircleFeature featureName="Family" />
     <CircleFeature featureName="Work and Professional" />
     </div>

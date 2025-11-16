@@ -116,4 +116,5 @@ const styles: { [key: string]: CSSProperties } = {
     margin: "0 8px",
     fontFamily: "Comic Sans Ms, Comic Sans, cursive",
   },
+
 };

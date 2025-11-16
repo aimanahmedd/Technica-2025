@@ -3,6 +3,7 @@ import {useState} from "react";
 import {Home} from "./components/Home"
 import Flashcards from "./components/Flashcards"
 import TestPage from "./components/TestPage";
+import ScoreDisplay from "./components/ScoreDisplay";
 import logo from "./official_ASL_logo.png";
 
 function App() {
@@ -102,7 +103,10 @@ function App() {
   {activeTab === "TestPage" && <TestPage />}
 
 </div>
+
 </div>
+
+
 );
 };
 export default App;

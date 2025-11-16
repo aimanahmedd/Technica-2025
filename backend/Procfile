@@ -1,1 +1,5 @@
+<<<<<<< HEAD
 web: uvicorn main:app --host 0.0.0.0 --port $PORT
+=======
+web: uvicorn main:app --host 0.0.0.0 --port $PORT
+>>>>>>> 8d08be82cc1b368a21a5ddfd40558c2ff5cb7a56

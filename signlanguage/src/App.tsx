@@ -30,6 +30,7 @@ function App() {
               ...styles.navBarButton,
               backgroundColor: homeHovered ? "#F4E7D3" : "transparent",
               color: homeHovered ? "#4A2511" : "#F4E7D3",
+              borderRadius: "6px",
               transform: homeClicked ? "scale(0.95)" : "scale(1)",
             }}
             onMouseEnter={() => setHomeHovered(true)}
@@ -46,6 +47,7 @@ function App() {
               ...styles.navBarButton,
               backgroundColor: learnHovered ? "#F4E7D3" : "transparent",
               color: learnHovered ? "#4A2511" : "#F4E7D3",
+              borderRadius: "6px",
               transform: learnClicked ? "scale(0.95)" : "scale(1)",
             }}
             onMouseEnter={() => setLearnHovered(true)}
@@ -62,6 +64,7 @@ function App() {
               ...styles.navBarButton,
               backgroundColor: testHovered ? "#F4E7D3" : "transparent",
               color: testHovered ? "#4A2511" : "#F4E7D3",
+              borderRadius: "6px",
               transform: testClicked ? "scale(0.95)" : "scale(1)",
             }}
             onMouseEnter={() => setTestHovered(true)}
@@ -87,7 +90,7 @@ function App() {
             onMouseLeave={() => setLOHovered(false)}
             onMouseDown={() => setLOClicked(true)}
             onMouseUp={() => setLOClicked(false)}
-            //onClick={() => setActiveTab("TestPage")} TO AASTHA MAKE THIS PAGE AND IMPLEMENT LOGIC!!!!
+            //onClick={() => setActiveTab("LogicPage")} TO AASTHA MAKE THIS PAGE AND IMPLEMENT LOGIC!!!!
 >
   Logout
 </button>

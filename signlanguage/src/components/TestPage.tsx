@@ -130,6 +130,7 @@ const styles: Record<string, CSSProperties> = {
     fontSize: "32px",
     marginBottom: "25px",
     fontWeight: "bold",
+    fontFamily: "Comic Sans Ms, Comic Sans, cursive",
   },
   card: {
     background: "#E3CBB4",
@@ -160,6 +161,7 @@ const styles: Record<string, CSSProperties> = {
     borderRadius: "10px",
     fontSize: "16px",
     cursor: "pointer",
+    fontFamily: "Comic Sans Ms, Comic Sans, cursive",
   },
   input: {
     width: "40px",
@@ -171,10 +173,12 @@ const styles: Record<string, CSSProperties> = {
     background: "#FDF5ED",
     color: "#5A3E2B",
     outline: "none",
+    fontFamily: "Comic Sans Ms, Comic Sans, cursive",
   },
   label: {
     color: "#5A3E2B",
     fontSize: "16px",
+    fontFamily: "Comic Sans Ms, Comic Sans, cursive",
   },
   status: {
     marginTop: "15px",
@@ -186,5 +190,6 @@ const styles: Record<string, CSSProperties> = {
     marginTop: "18px",
     fontSize: "14px",
     color: "#5A3E2B",
+    fontFamily: "Comic Sans Ms, Comic Sans, cursive",
   },
 };

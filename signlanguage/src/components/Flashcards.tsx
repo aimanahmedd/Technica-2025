@@ -50,6 +50,7 @@ const styles: { [key: string]: CSSProperties } = {
     color: "#5A3E2B",
     fontSize: "32px",
     marginBottom: "20px",
+    fontFamily: "Comic Sans Ms, Comic Sans, cursive",
   },
   cardContainer: {
     background: "#E3CBB4",
@@ -71,12 +72,14 @@ const styles: { [key: string]: CSSProperties } = {
     color: "#5A3E2B",
     fontSize: "28px",
     fontWeight: "bold",
+    fontFamily: "Comic Sans Ms, Comic Sans, cursive",
   },
   buttons: {
     display: "flex",
     justifyContent: "space-between",
     width: "420px",
     marginTop: "20px",
+    fontFamily: "Comic Sans Ms, Comic Sans, cursive",
   },
   button: {
     padding: "12px 20px",
@@ -88,5 +91,6 @@ const styles: { [key: string]: CSSProperties } = {
     cursor: "pointer",
     flex: 1,
     margin: "0 8px",
+    fontFamily: "Comic Sans Ms, Comic Sans, cursive",
   },
 };

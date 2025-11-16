@@ -7,7 +7,14 @@ export default function TestPage() {
   const [letter, setLetter] = useState<string>("A");
   const [streamStarted, setStreamStarted] = useState(false);
 
+const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
+
+const [orderedMode, setOrderedMode] = useState(true); // toggle
+const [index, setIndex] = useState(0); // current letter index
+
+
   useEffect(() => {
+      setLetter(LETTERS[index]);
     return () => {
       if (videoRef.current && videoRef.current.srcObject) {
         const tracks = (videoRef.current.srcObject as MediaStream).getTracks();
@@ -62,12 +69,45 @@ export default function TestPage() {
         headers: { "Content-Type": "multipart/form-data" },
       });
       const correct = res.data?.correct;
-      setStatus(correct ? "✅ Correct!" : "❌ Try again.");
+      if (correct) {
+      setStatus("✅ Correct!");
+      // ---- AUTO MOVE TO NEXT LETTER ----
+      setTimeout(() => {
+        let nextIndex;
+
+        if (orderedMode) {
+          nextIndex = (index + 1) % LETTERS.length;
+        } else {
+          nextIndex = Math.floor(Math.random() * LETTERS.length);
+        }
+
+        setIndex(nextIndex);
+        setLetter(LETTERS[nextIndex]);
+      }, 1000);
+    } else {
+      setStatus("❌ Try again.");
+    }
     } catch (err) {
       console.error(err);
       setStatus("Error contacting backend. Is it running?");
     }
   };
+
+const skipLetter = () => {
+  let nextIndex;
+
+  if (orderedMode) {
+    nextIndex = (index + 1) % LETTERS.length;
+  } else {
+    nextIndex = Math.floor(Math.random() * LETTERS.length);
+  }
+
+  setIndex(nextIndex);
+  setLetter(LETTERS[nextIndex]);
+
+  setStatus("⏭️ Skipped!");
+};
+
 
   return (
     <div style={styles.page}>
@@ -84,29 +124,42 @@ export default function TestPage() {
           style={styles.video}
         />
 
-        <div style={styles.controls}>
+      <div style={styles.wide}>
+          <div style={styles.controls}>
           {!streamStarted ? (
-            <button onClick={startCamera} style={styles.button}>
+            <button onClick={startCamera} style={{ ...styles.button, fontSize: "24px" }}>
               Start Camera
             </button>
           ) : (
-            <button onClick={captureAndCheck} style={styles.button}>
-              Check ASL
+            <button onClick={captureAndCheck} style={{ ...styles.button, fontSize: "24px" }}>
+              Check Answer
             </button>
           )}
-
-          <input
-            value={letter}
-            onChange={(e) =>
-              setLetter(e.target.value.toUpperCase().slice(0, 1))
-            }
-            style={styles.input}
-            maxLength={1}
-          />
-          <span style={styles.label}>Expected Letter</span>
+          <div style={{ fontSize: "64px", fontWeight: "bold", color: "#5A3E2B" }}>
+            {letter}
+            
+          </div>
+          </div>
         </div>
 
-        <p style={styles.status}>{status}</p>
+      <p style={styles.status}>{status}</p>
+
+      <div style={styles.bottom}>
+        <button
+          onClick={skipLetter}
+          style={{ ...styles.button, background: "#A67B5B" }}
+        >
+          Skip
+        </button>
+
+        <button
+          onClick={() => setOrderedMode(!orderedMode)}
+          style={{ ...styles.button, background: "#6B4423" }}
+        >
+          Mode: {orderedMode ? "Ordered" : "Random"}
+        </button>
+      </div>
+
       </div>
 
       <p style={styles.note}>
@@ -130,7 +183,6 @@ const styles: Record<string, CSSProperties> = {
     fontSize: "32px",
     marginBottom: "25px",
     fontWeight: "bold",
-    fontFamily: "Comic Sans Ms, Comic Sans, cursive",
   },
   card: {
     background: "#E3CBB4",
@@ -147,12 +199,7 @@ const styles: Record<string, CSSProperties> = {
     border: "4px solid #C9B09A",
     objectFit: "cover",
   },
-  controls: {
-    marginTop: "18px",
-    display: "flex",
-    alignItems: "center",
-    gap: "10px",
-  },
+  
   button: {
     padding: "12px 18px",
     background: "#8B5E3C",
@@ -161,7 +208,6 @@ const styles: Record<string, CSSProperties> = {
     borderRadius: "10px",
     fontSize: "16px",
     cursor: "pointer",
-    fontFamily: "Comic Sans Ms, Comic Sans, cursive",
   },
   input: {
     width: "40px",
@@ -173,16 +219,14 @@ const styles: Record<string, CSSProperties> = {
     background: "#FDF5ED",
     color: "#5A3E2B",
     outline: "none",
-    fontFamily: "Comic Sans Ms, Comic Sans, cursive",
   },
   label: {
     color: "#5A3E2B",
     fontSize: "16px",
-    fontFamily: "Comic Sans Ms, Comic Sans, cursive",
   },
   status: {
     marginTop: "15px",
-    fontSize: "20px",
+    fontSize: "25px",
     color: "#5A3E2B",
     fontWeight: "bold",
   },
@@ -190,6 +234,26 @@ const styles: Record<string, CSSProperties> = {
     marginTop: "18px",
     fontSize: "14px",
     color: "#5A3E2B",
-    fontFamily: "Comic Sans Ms, Comic Sans, cursive",
+  },
+  wide: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "center",
+    alignContent: "center"
+  },
+    bottom: {
+    width: "100%",
+    display: "flex",
+    justifyContent: "space-between",
+    alignContent: "center"
+  },
+  controls: {
+    width: "70%",
+    marginTop: "18px",
+    fontSize: "30px",
+    display: "flex",
+    alignItems: "center",
+    justifySelf: "center",
+    //gap: "10px",
   },
 };

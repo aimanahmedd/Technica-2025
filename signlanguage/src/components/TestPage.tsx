@@ -12,6 +12,9 @@ const LETTERS = "ABCDEFGHIJKLMNOPQRSTUVWXYZ".split("");
 const [orderedMode, setOrderedMode] = useState(true); // toggle
 const [index, setIndex] = useState(0); // current letter index
 
+useEffect(() => {
+  axios.get("http://localhost:8000/test?test_state=true");
+}, []);
 
   useEffect(() => {
       setLetter(LETTERS[index]);
@@ -111,7 +114,7 @@ const skipLetter = () => {
 
   return (
     <div style={styles.page}>
-      <h1 style={styles.title}>ASL Practice — Test Page</h1>
+      <h1 style={styles.title}>ASL Test Page</h1>
 
       <div style={styles.card}>
         <video
@@ -177,12 +180,13 @@ const styles: Record<string, CSSProperties> = {
     flexDirection: "column",
     alignItems: "center",
     padding: "30px 20px",
+    fontFamily: "Comic Sans MS, Comic Sans, cursive",
   },
   title: {
     color: "#5A3E2B",
     fontSize: "32px",
-    marginBottom: "25px",
-    fontWeight: "bold",
+    marginBottom: "20px",
+    fontFamily: "Comic Sans Ms, Comic Sans, cursive",
   },
   card: {
     background: "#E3CBB4",
@@ -208,6 +212,7 @@ const styles: Record<string, CSSProperties> = {
     borderRadius: "10px",
     fontSize: "16px",
     cursor: "pointer",
+    fontFamily: "Comic Sans MS, Comic Sans, cursive",
   },
   input: {
     width: "40px",
@@ -251,9 +256,9 @@ const styles: Record<string, CSSProperties> = {
     width: "70%",
     marginTop: "18px",
     fontSize: "30px",
+    justifyContent: "space-between",
     display: "flex",
     alignItems: "center",
-    justifySelf: "center",
     //gap: "10px",
   },
 };

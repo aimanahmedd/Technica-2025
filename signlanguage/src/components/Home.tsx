@@ -10,7 +10,7 @@ return(
     <br></br>
     <h2 style={styles.headingStyle}>Our Mission</h2>
     <p style={styles.paragraphStyle}>
-        At ASLearn, our goal is ACCESSIBILITY, SUPPORT, and LEARNING! We want to make it easier for YOU to learn ASL no matter your circumstance.
+        At ASLearn, our goal is ACCESSIBILITY, SUPPORT, and LEARN! We want to make it easier for YOU to learn ASL no matter your circumstance.
         Whether you are a beginner just starting out or longtime ASL fluent brushing up on your skills, our platform provides clear lessons and tools
         to guide you every step of the way. Learning ASL should be fun and achievable for everyone, and that is what we are here to make happen❤️.
     </p>

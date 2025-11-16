@@ -1,8 +1,8 @@
 import { useState, CSSProperties } from "react";
 
 // Import all 26 ASL letter images from src/Flashcards/
-import A from "./Flashcards/A.png";
-import B from "./Flashcards/B.png";
+import A from "../Flashcards/A.png";
+import B from "../Flashcards/B.png";
 
 
 // Map letters to their images

@@ -1,33 +1,53 @@
 import * as React from "react";
 import {useState} from "react";
 import {Home} from "./components/Home"
+import Flashcards from "./components/Flashcards"
+import logo from "./ASL_Logo.png";
+
 
 function App() {
  const [activeTab, setActiveTab] = useState("Home");
- const [hovered, setHovered] = useState(false);
-  const [clicked, setClicked] = useState(false);
+  const [homeHovered, setHomeHovered] = useState(false);
+  const [homeClicked, setHomeClicked] = useState(false);
+
+  const [learnHovered, setLearnHovered] = useState(false);
+  const [learnClicked, setLearnClicked] = useState(false);
 
  return(
 <div className="app-container">
 <div style={(styles.navBarBackground)}className = "header">
-<h1 style={(styles.navBarTitle)}>ASLearn Time!</h1>
+<img src={logo} alt="AL Logo" style={styles.navBarImg} />
 <div style={styles.navButtonsRow}>
     <button style={{...styles.navBarButton,
-      backgroundColor: hovered ? "#F4E7D3" : "transparent", 
-       color: hovered ? "#4A2511" : "#F4E7D3",
-      transform: clicked ? "scale(0.95)" : "scale(1)"
+      backgroundColor: homeHovered ? "#F4E7D3" : "transparent", 
+       color: homeHovered ? "#4A2511" : "#F4E7D3",
+      transform: homeClicked ? "scale(0.95)" : "scale(1)"
     }} 
-    onMouseEnter={() => setHovered(true)}
-  onMouseLeave={() => setHovered(false)}
-  onMouseDown={() => setClicked(true)}
-  onMouseUp={() => setClicked(false)}
+    onMouseEnter={() => setHomeHovered(true)}
+  onMouseLeave={() => setHomeHovered(false)}
+  onMouseDown={() => setHomeClicked(true)}
+  onMouseUp={() => setHomeClicked(false)}
   onClick={() => setActiveTab("Home")}>Home</button>
+
+    <button style={{...styles.navBarButton,
+      backgroundColor: learnHovered ? "#F4E7D3" : "transparent", 
+       color: learnHovered ? "#4A2511" : "#F4E7D3",
+      transform: learnClicked ? "scale(0.95)" : "scale(1)"
+    }} 
+    onMouseEnter={() => setLearnHovered(true)}
+  onMouseLeave={() => setLearnHovered(false)}
+  onMouseDown={() => setLearnClicked(true)}
+  onMouseUp={() => setLearnClicked(false)}
+  onClick={() => setActiveTab("Flashcards")}>Learn</button>
+
 
 </div>
 </div>
 
 <div className="content">
   {activeTab === "Home" && <Home />}
+  {activeTab === "Flashcards" && <Flashcards />}
+
 </div>
 </div>
 );
@@ -37,10 +57,12 @@ const styles: {[key: string]: React.CSSProperties}={
   navBarBackground:{
     backgroundColor: "#4A2511", 
     display: "flex",
-      flexDirection: "column",  
-    justifyContent: "center",   // horizontally center children
+      flexDirection: "row",  
+    justifyContent: "space-between",   // horizontally center children
     alignItems: "center",       // vertically center children
-    padding: "10px",
+    padding: "0 20px",
+    height: "x",
+    boxSizing: "border-box",
   },
 
   navBarTitle:{
@@ -62,8 +84,16 @@ navBarButton:{
   color:"#F4E7D3",
   fontFamily: "Comic Sans MS, Comic Sans, cursive",
   fontSize: "24px",
-  cursor: "pointer"
+  cursor: "pointer",
+  justifyContent: "flex-start",
+  marginTop: "-20px"
 
+},
+
+navBarImg:{
+  width: "auto",
+  height: "180px",
+  marginBottom: "0px"
 }
 };
 export default App;

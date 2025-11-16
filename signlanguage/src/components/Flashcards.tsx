@@ -3,11 +3,34 @@ import { useState, CSSProperties } from "react";
 // Import all 26 ASL letter images from src/Flashcards/
 import A from "../Flashcards/A.png";
 import B from "../Flashcards/B.png";
-
+import C from "../Flashcards/C.png";
+import D from "../Flashcards/D.png";
+import E from "../Flashcards/E.png";
+import F from "../Flashcards/F.png";
+import G from "../Flashcards/G.png";
+import H from "../Flashcards/H.png";
+import I from "../Flashcards/I.png";
+import J from "../Flashcards/J.png";
+import K from "../Flashcards/K.png";
+import L from "../Flashcards/L.png"; 
+import M from "../Flashcards/M.png";
+import N from "../Flashcards/N.png";
+import O from "../Flashcards/O.png";
+import P from "../Flashcards/P.png";
+import Q from "../Flashcards/Q.png";
+import R from "../Flashcards/R.png";
+import S from "../Flashcards/S.png";
+import T from "../Flashcards/T.png";
+import U from "../Flashcards/U.png";
+import V from "../Flashcards/V.png";
+import W from "../Flashcards/W.png";
+import X from "../Flashcards/X.png";
+import Y from "../Flashcards/Y.png";
+import Z from "../Flashcards/Z.png";
 
 // Map letters to their images
 const ASL_IMAGES: Record<string, string> = {
-  A,B
+  A,B,C,D,E,F,G,H,I,J,K,L,M,N,O,P,Q,R,S,T,U,V,W,X,Y,Z
 };
 
 export default function Flashcards() {

@@ -110,7 +110,7 @@ export default function TestPage() {
       </div>
 
       <p style={styles.note}>
-        Note: This is a demo heuristic. For full ASL A–Z, use a trained model.
+        Note: This is a demo heuristic.
       </p>
     </div>
   );

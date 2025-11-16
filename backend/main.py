@@ -1,8 +1,12 @@
+# --- Previous simple heuristic version (commented out) ---
+
 from fastapi import FastAPI, File, UploadFile, Form
 from fastapi.middleware.cors import CORSMiddleware
 import numpy as np
 import cv2
 import mediapipe as mp
+
+progress = []
 
 app = FastAPI()
 
@@ -55,9 +59,33 @@ def check_asl(frame_bytes: bytes, expected_letter: str = "A") -> bool:
     demo_mapping = {
         "A": 0,  # fist
         "B": 4,  # palm open (four fingers up)
-        # expand as needed
+#        "C": [1, 2, 3, 4], #one for the finger to the left, doesn't count thumb (DONT TEST THIS ONE)
+        "D": 1,  # index finger up
+        "E": 0,  # fist (same as A)
+        "F": 3,  # Pointer touching thumb, rest up
+        "G": 1,  # Thumb and index finger extended
+        "H": 2,  # Index and middle fingers extended
+        "I": 1,  # pinky finger up
+        "J": 1,  # pinky finger up (with motion, not detected here)
+        "K": 2,  # index and middle up
+        "L": 1,  # index finger up (thumb logic not implemented)
+        "M": 0,  # fist (same as A)
+        "N": 0,  # fist (same as A)
+        "O": 0,  # fist (same as A)
+ #       "P": 1,  # index, middle & thumb touching
+ #       "Q": 1,  # thumb and index down
+        "R": 2,  # index and middle crossed
+        "S": 0,  # fist (same as A)
+        "T": 0,  # fist with thumb between fingers
+        "U": 2,  # index and middle up
+        "V": 2,  # index and middle up
+        "W": 3,  # index, middle, ring up  
+        "X": 1,  # index finger bent
+        "Y": 1,  # thumb and pinky up (not fully detected here)
+        "Z": 1,  # index finger up (with motion, not detected here)
     }
     expected_count = demo_mapping.get(expected_letter.upper(), None)
+    print(f"Detected fingers up: {fingers_up}, Expected for '{expected_letter}': {expected_count}")
     if expected_count is None:
         # default fallback: require at least 1 finger (avoid false positive)
         return fingers_up >= 1
@@ -71,4 +99,13 @@ async def check(file: UploadFile = File(...), letter: str = Form("A")):
     """
     frame_bytes = await file.read()
     correct = check_asl(frame_bytes, letter)
+    if bool(correct) and letter.upper() not in progress:
+        progress.append(letter.upper())
     return {"correct": bool(correct)}
+
+@app.get("/progress")
+async def get_progress():
+    """
+    Returns the number of correctly signed letters so far.
+    """
+    return {"progress": len(progress)}

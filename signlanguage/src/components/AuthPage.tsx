@@ -1,9 +1,9 @@
 import { useState } from "react";
 import { supabase } from "./client";
 
-export default function AuthPage() {
+export default function AuthPage({ onLogin }: { onLogin: () => void }) {
   const [mode, setMode] = useState<"login" | "signup">("login");
-  
+
   const [form, setForm] = useState({
     firstName: "",
     lastName: "",
@@ -16,20 +16,25 @@ export default function AuthPage() {
     setForm({ ...form, [e.target.name]: e.target.value });
   };
 
+  // Convert username → fake email
+  const usernameToEmail = (username: string) => {
+    return `${username}@aslearn.app`.toLowerCase();
+  };
+
   const handleSignup = async () => {
     if (form.password !== form.confirm)
       return alert("Passwords do not match!");
 
     const { error } = await supabase.auth.signUp({
-      email: form.username + "@example.com",
+      email: usernameToEmail(form.username),
       password: form.password,
       options: {
         data: {
           first_name: form.firstName,
           last_name: form.lastName,
           username: form.username,
-        }
-      }
+        },
+      },
     });
 
     if (error) alert(error.message);
@@ -41,25 +46,24 @@ export default function AuthPage() {
 
   const handleLogin = async () => {
     const { data, error } = await supabase.auth.signInWithPassword({
-      email: form.username + "@example.com",
+      email: usernameToEmail(form.username),
       password: form.password,
     });
 
     if (error) alert(error.message);
     else {
       alert("Logged in!");
+      onLogin();
     }
   };
 
   return (
     <div style={styles.page}>
       <div style={styles.box}>
-
         <h2 style={{ color: "#3E2A1F", textAlign: "center" }}>
           {mode === "login" ? "Welcome Back" : "Create Account"}
         </h2>
 
-        {/* SIGNUP FORM */}
         {mode === "signup" && (
           <>
             <input

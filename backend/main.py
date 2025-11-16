@@ -7,6 +7,7 @@ import cv2
 import mediapipe as mp
 
 progress = []
+test = False
 
 app = FastAPI()
 
@@ -99,9 +100,16 @@ async def check(file: UploadFile = File(...), letter: str = Form("A")):
     """
     frame_bytes = await file.read()
     correct = check_asl(frame_bytes, letter)
-    if bool(correct) and letter.upper() not in progress:
+    if bool(correct) and letter.upper() not in progress and test:
         progress.append(letter.upper())
     return {"correct": bool(correct)}
+
+@app.get("/test")
+async def set_test(test_state: bool):
+    global test
+    test = test_state
+    return {"test": test}
+
 
 @app.get("/progress")
 async def get_progress():

@@ -2,6 +2,7 @@ import * as React from "react";
 import {useState} from "react";
 import {Home} from "./components/Home"
 import Flashcards from "./components/Flashcards"
+import TestPage from "./components/TestPage";
 import logo from "./official_ASL_logo.png";
 
 function App() {
@@ -11,6 +12,12 @@ function App() {
 
   const [learnHovered, setLearnHovered] = useState(false);
   const [learnClicked, setLearnClicked] = useState(false);
+
+  const [testHovered, setTestHovered] = useState(false);
+  const [testClicked, setTestClicked] = useState(false);
+
+  const [LOHovered, setLOHovered] = useState(false);
+  const [LOClicked, setLOClicked] = useState(false);
 
  return(
 <div className="app-container">
@@ -49,14 +56,48 @@ function App() {
           >
             Learn
           </button>
+
+          <button
+            style={{
+              ...styles.navBarButton,
+              backgroundColor: testHovered ? "#F4E7D3" : "transparent",
+              color: testHovered ? "#4A2511" : "#F4E7D3",
+              transform: testClicked ? "scale(0.95)" : "scale(1)",
+            }}
+            onMouseEnter={() => setTestHovered(true)}
+            onMouseLeave={() => setTestHovered(false)}
+            onMouseDown={() => setTestClicked(true)}
+            onMouseUp={() => setTestClicked(false)}
+            onClick={() => setActiveTab("TestPage")}
+          >
+            Test
+          </button>
+
         </div>
 
   <div style={{ width: "60px" }}></div>  {/* Spacer to center buttons */}
+  <button
+  style={{
+    ...styles.logoutButton,
+  backgroundColor: LOHovered ? "#F4E7D3" : "transparent",
+              color: LOHovered ? "#4A2511" : "#F4E7D3",
+              transform: LOClicked ? "scale(0.95)" : "scale(1)",}}
+  onClick={() => console.log("Logout clicked")}  //TO AASTHA ADD LOGIC HERE!!!!!
+            onMouseEnter={() => setLOHovered(true)}
+            onMouseLeave={() => setLOHovered(false)}
+            onMouseDown={() => setLOClicked(true)}
+            onMouseUp={() => setLOClicked(false)}
+            //onClick={() => setActiveTab("TestPage")} TO AASTHA MAKE THIS PAGE AND IMPLEMENT LOGIC!!!!
+>
+  Logout
+</button>
 </div>
 
 <div className="content">
   {activeTab === "Home" && <Home />}
   {activeTab === "Flashcards" && <Flashcards />}
+  {activeTab === "TestPage" && <TestPage />}
+
 </div>
 </div>
 );
@@ -67,11 +108,11 @@ const styles: {[key: string]: React.CSSProperties}={
   navBarBackground:{
     backgroundColor: "#5e3023", 
     display: "flex",
-      flexDirection: "row",  
+    flexDirection: "row",  
     //justifyContent: "space-between",   // horizontally center children
     alignItems: "center",       // vertically center children
     padding: "0 20px",
-    height: "80px",
+    height: "130px",
     boxSizing: "border-box",
   },
 
@@ -106,4 +147,18 @@ navBarButton:{
     height: "180px",
     marginBottom: "0px",
   },
+
+  logoutButton:{
+    border: "1px solid #F4E7D3",
+    backgroundColor: "transparent",
+    color: "#F4E7D3",
+    fontFamily: "Comic Sans Ms, Comic Sans, cursive",
+    fontSize: "20px",
+    padding: "8px 18px",
+    borderRadius: "6px",
+    cursor: "pointer",
+    marginLeft: "auto",
+    marginTop: "-20px",
+    transition: "0.2s"
+  }
 };

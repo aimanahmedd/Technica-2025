@@ -42,7 +42,7 @@ const styles: {[key:string]: CSSProperties} = {
     circle:{
         width: 150,
         height: 150,
-        marginTop: '20px'
+        marginTop: "20px"
     },
     headingStyle: {
     fontSize: '32px',

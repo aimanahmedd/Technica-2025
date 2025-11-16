@@ -1,4 +1,4 @@
-import React, { useRef, useState, useEffect } from "react";
+import React, { useRef, useState, useEffect, CSSProperties } from "react";
 import axios from "axios";
 
 export default function TestPage() {
@@ -8,11 +8,10 @@ export default function TestPage() {
   const [streamStarted, setStreamStarted] = useState(false);
 
   useEffect(() => {
-    // cleanup when component unmounts
     return () => {
       if (videoRef.current && videoRef.current.srcObject) {
         const tracks = (videoRef.current.srcObject as MediaStream).getTracks();
-        tracks.forEach(t => t.stop());
+        tracks.forEach((t) => t.stop());
       }
     };
   }, []);
@@ -36,6 +35,7 @@ export default function TestPage() {
       setStatus("Start the camera first.");
       return;
     }
+
     const video = videoRef.current;
     const canvas = document.createElement("canvas");
     canvas.width = video.videoWidth || 640;
@@ -44,7 +44,9 @@ export default function TestPage() {
     if (!ctx) return;
     ctx.drawImage(video, 0, 0, canvas.width, canvas.height);
 
-    const blob: Blob | null = await new Promise(resolve => canvas.toBlob(resolve, "image/jpeg", 0.8));
+    const blob: Blob | null = await new Promise((resolve) =>
+      canvas.toBlob(resolve, "image/jpeg", 0.8)
+    );
     if (!blob) {
       setStatus("Failed to capture frame.");
       return;
@@ -68,38 +70,121 @@ export default function TestPage() {
   };
 
   return (
-    <div style={{ textAlign: "center", padding: 20 }}>
-      <h2>ASL Practice — Test Page</h2>
-      <div>
+    <div style={styles.page}>
+      <h1 style={styles.title}>ASL Practice — Test Page</h1>
+
+      <div style={styles.card}>
         <video
           ref={videoRef}
           autoPlay
           playsInline
           muted
-          width={480}
-          height={360}
-          style={{ border: "1px solid #ccc", borderRadius: 6 }}
+          width={420}
+          height={320}
+          style={styles.video}
         />
+
+        <div style={styles.controls}>
+          {!streamStarted ? (
+            <button onClick={startCamera} style={styles.button}>
+              Start Camera
+            </button>
+          ) : (
+            <button onClick={captureAndCheck} style={styles.button}>
+              Check ASL
+            </button>
+          )}
+
+          <input
+            value={letter}
+            onChange={(e) =>
+              setLetter(e.target.value.toUpperCase().slice(0, 1))
+            }
+            style={styles.input}
+            maxLength={1}
+          />
+          <span style={styles.label}>Expected Letter</span>
+        </div>
+
+        <p style={styles.status}>{status}</p>
       </div>
 
-      <div style={{ marginTop: 10 }}>
-        {!streamStarted ? (
-          <button onClick={startCamera} style={{ marginRight: 8 }}>Start Camera</button>
-        ) : (
-          <button onClick={captureAndCheck} style={{ marginRight: 8 }}>Check ASL</button>
-        )}
-        <input
-          value={letter}
-          onChange={(e) => setLetter(e.target.value.toUpperCase().slice(0, 1))}
-          style={{ width: 40, textAlign: "center" }}
-          maxLength={1}
-        />
-        <span style={{ marginLeft: 8 }}>Expected Letter</span>
-      </div>
-
-      <p style={{ marginTop: 12 }}>{status}</p>
-
-      <p style={{ fontSize: 12, color: "#666" }}>Note: This is a demo heuristic using MediaPipe. For production use a trained ASL classifier.</p>
+      <p style={styles.note}>
+        Note: This is a demo heuristic. For full ASL A–Z, use a trained model.
+      </p>
     </div>
   );
 }
+
+const styles: Record<string, CSSProperties> = {
+  page: {
+    background: "#F4E7D3",
+    minHeight: "100vh",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    padding: "30px 20px",
+  },
+  title: {
+    color: "#5A3E2B",
+    fontSize: "32px",
+    marginBottom: "25px",
+    fontWeight: "bold",
+  },
+  card: {
+    background: "#E3CBB4",
+    padding: "30px",
+    borderRadius: "18px",
+    boxShadow: "0 6px 16px rgba(0, 0, 0, 0.18)",
+    display: "flex",
+    flexDirection: "column",
+    alignItems: "center",
+    width: "450px",
+  },
+  video: {
+    borderRadius: "12px",
+    border: "4px solid #C9B09A",
+    objectFit: "cover",
+  },
+  controls: {
+    marginTop: "18px",
+    display: "flex",
+    alignItems: "center",
+    gap: "10px",
+  },
+  button: {
+    padding: "12px 18px",
+    background: "#8B5E3C",
+    color: "white",
+    border: "none",
+    borderRadius: "10px",
+    fontSize: "16px",
+    cursor: "pointer",
+  },
+  input: {
+    width: "40px",
+    height: "40px",
+    fontSize: "20px",
+    textAlign: "center",
+    borderRadius: "8px",
+    border: "2px solid #8B5E3C",
+    background: "#FDF5ED",
+    color: "#5A3E2B",
+    outline: "none",
+  },
+  label: {
+    color: "#5A3E2B",
+    fontSize: "16px",
+  },
+  status: {
+    marginTop: "15px",
+    fontSize: "20px",
+    color: "#5A3E2B",
+    fontWeight: "bold",
+  },
+  note: {
+    marginTop: "18px",
+    fontSize: "14px",
+    color: "#5A3E2B",
+  },
+};

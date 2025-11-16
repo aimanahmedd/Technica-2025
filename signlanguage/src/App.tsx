@@ -2,6 +2,7 @@ import * as React from "react";
 import {useState} from "react";
 import {Home} from "./components/Home"
 import Flashcards from "./components/Flashcards"
+import Practice from "./components/Practice";
 import TestPage from "./components/TestPage";
 import ScoreDisplay from "./components/ScoreDisplay";
 import logo from "./official_ASL_logo.png";
@@ -13,6 +14,9 @@ function App() {
 
   const [learnHovered, setLearnHovered] = useState(false);
   const [learnClicked, setLearnClicked] = useState(false);
+
+  const [practiceHovered, setPracticeHovered] = useState(false);
+  const [practiceClicked, setPracticeClicked] = useState(false);
 
   const [testHovered, setTestHovered] = useState(false);
   const [testClicked, setTestClicked] = useState(false);
@@ -60,6 +64,23 @@ function App() {
             Learn
           </button>
 
+            <button
+            style={{
+              ...styles.navBarButton,
+              backgroundColor: practiceHovered ? "#F4E7D3" : "transparent",
+              color: practiceHovered ? "#4A2511" : "#F4E7D3",
+              borderRadius: "6px",
+              transform: practiceClicked ? "scale(0.95)" : "scale(1)",
+            }}
+            onMouseEnter={() => setPracticeHovered(true)}
+            onMouseLeave={() => setPracticeHovered(false)}
+            onMouseDown={() => setPracticeClicked(true)}
+            onMouseUp={() => setPracticeClicked(false)}
+            onClick={() => setActiveTab("Practice")}
+          >
+            Practice
+          </button>
+
           <button
             style={{
               ...styles.navBarButton,
@@ -100,6 +121,7 @@ function App() {
 <div className="content">
   {activeTab === "Home" && <Home />}
   {activeTab === "Flashcards" && <Flashcards />}
+  {activeTab === "Practice" && <Practice/>}
   {activeTab === "TestPage" && <TestPage />}
 
 </div>

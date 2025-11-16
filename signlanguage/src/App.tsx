@@ -53,9 +53,9 @@ function App() {
 );
 };
 
-const styles: {[key: string]: React.CSSProperties}={
-  navBarBackground:{
-    backgroundColor: "#4A2511", 
+const styles: { [key: string]: React.CSSProperties } = {
+  navBarBackground: {
+    backgroundColor: "#4A2511",
     display: "flex",
       flexDirection: "row",  
     justifyContent: "space-between",   // horizontally center children
@@ -65,18 +65,18 @@ const styles: {[key: string]: React.CSSProperties}={
     boxSizing: "border-box",
   },
 
-  navBarTitle:{
+  navBarTitle: {
     color: "#F4E7D3",
-    marginRight: "20px",  
+    marginRight: "20px",
     fontSize: "32px",
     fontFamily: "Comic Sans MS, Comic Sans, cursive",
-
   },
-navButtonsRow: {
-  display: "flex",
-  flexDirection: "row",      // buttons side-by-side
-  gap: "15px"                 // spacing between them
-},
+
+  navButtonsRow: {
+    display: "flex",
+    flexDirection: "row",
+    gap: "15px",
+  },
 
 navBarButton:{
   border: "1px solid #4A2511",
@@ -96,5 +96,3 @@ navBarImg:{
   marginBottom: "0px"
 }
 };
-export default App;
-

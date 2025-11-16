@@ -2,7 +2,7 @@ import * as React from "react";
 import {useState} from "react";
 import {Home} from "./components/Home"
 import Flashcards from "./components/Flashcards"
-import logo from "./ASL_Logo.png";
+import logo from "./official_ASL_logo.png";
 
 
 function App() {
@@ -17,6 +17,8 @@ function App() {
 <div className="app-container">
 <div style={(styles.navBarBackground)}className = "header">
 <img src={logo} alt="AL Logo" style={styles.navBarImg} />
+
+
 <div style={styles.navButtonsRow}>
     <button style={{...styles.navBarButton,
       backgroundColor: homeHovered ? "#F4E7D3" : "transparent", 
@@ -42,6 +44,7 @@ function App() {
 
 
 </div>
+<div style={{width:"60px"}}></div>
 </div>
 
 <div className="content">
@@ -55,13 +58,13 @@ function App() {
 
 const styles: {[key: string]: React.CSSProperties}={
   navBarBackground:{
-    backgroundColor: "#4A2511", 
+    backgroundColor: "#5e3023", 
     display: "flex",
       flexDirection: "row",  
-    justifyContent: "space-between",   // horizontally center children
+    //justifyContent: "space-between",   // horizontally center children
     alignItems: "center",       // vertically center children
     padding: "0 20px",
-    height: "x",
+    height: "80x",
     boxSizing: "border-box",
   },
 
@@ -75,11 +78,14 @@ const styles: {[key: string]: React.CSSProperties}={
 navButtonsRow: {
   display: "flex",
   flexDirection: "row",      // buttons side-by-side
-  gap: "15px"                 // spacing between them
+  gap: "75px",                // spacing between them
+  justifyContent: "center",
+  alignItems: "center",
+  flex:1,
 },
 
 navBarButton:{
-  border: "1px solid #4A2511",
+  border: "1px solid #5E3023",
   backgroundColor: "rgba(0,0,0,0)",
   color:"#F4E7D3",
   fontFamily: "Comic Sans MS, Comic Sans, cursive",

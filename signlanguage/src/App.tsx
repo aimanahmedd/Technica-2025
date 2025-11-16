@@ -4,62 +4,71 @@ import {Home} from "./components/Home"
 import Flashcards from "./components/Flashcards"
 import logo from "./ASL_Logo.png";
 
-
 function App() {
- const [activeTab, setActiveTab] = useState("Home");
+  const [activeTab, setActiveTab] = useState("Home");
   const [homeHovered, setHomeHovered] = useState(false);
   const [homeClicked, setHomeClicked] = useState(false);
 
   const [learnHovered, setLearnHovered] = useState(false);
   const [learnClicked, setLearnClicked] = useState(false);
 
- return(
-<div className="app-container">
-<div style={(styles.navBarBackground)}className = "header">
-<img src={logo} alt="AL Logo" style={styles.navBarImg} />
-<div style={styles.navButtonsRow}>
-    <button style={{...styles.navBarButton,
-      backgroundColor: homeHovered ? "#F4E7D3" : "transparent", 
-       color: homeHovered ? "#4A2511" : "#F4E7D3",
-      transform: homeClicked ? "scale(0.95)" : "scale(1)"
-    }} 
-    onMouseEnter={() => setHomeHovered(true)}
-  onMouseLeave={() => setHomeHovered(false)}
-  onMouseDown={() => setHomeClicked(true)}
-  onMouseUp={() => setHomeClicked(false)}
-  onClick={() => setActiveTab("Home")}>Home</button>
+  return (
+    <div className="app-container">
+      <div style={styles.navBarBackground} className="header">
+        <img src={logo} alt="AL Logo" style={styles.navBarImg} />
 
-    <button style={{...styles.navBarButton,
-      backgroundColor: learnHovered ? "#F4E7D3" : "transparent", 
-       color: learnHovered ? "#4A2511" : "#F4E7D3",
-      transform: learnClicked ? "scale(0.95)" : "scale(1)"
-    }} 
-    onMouseEnter={() => setLearnHovered(true)}
-  onMouseLeave={() => setLearnHovered(false)}
-  onMouseDown={() => setLearnClicked(true)}
-  onMouseUp={() => setLearnClicked(false)}
-  onClick={() => setActiveTab("Flashcards")}>Learn</button>
+        <div style={styles.navButtonsRow}>
+          <button
+            style={{
+              ...styles.navBarButton,
+              backgroundColor: homeHovered ? "#F4E7D3" : "transparent",
+              color: homeHovered ? "#4A2511" : "#F4E7D3",
+              transform: homeClicked ? "scale(0.95)" : "scale(1)",
+            }}
+            onMouseEnter={() => setHomeHovered(true)}
+            onMouseLeave={() => setHomeHovered(false)}
+            onMouseDown={() => setHomeClicked(true)}
+            onMouseUp={() => setHomeClicked(false)}
+            onClick={() => setActiveTab("Home")}
+          >
+            Home
+          </button>
 
+          <button
+            style={{
+              ...styles.navBarButton,
+              backgroundColor: learnHovered ? "#F4E7D3" : "transparent",
+              color: learnHovered ? "#4A2511" : "#F4E7D3",
+              transform: learnClicked ? "scale(0.95)" : "scale(1)",
+            }}
+            onMouseEnter={() => setLearnHovered(true)}
+            onMouseLeave={() => setLearnHovered(false)}
+            onMouseDown={() => setLearnClicked(true)}
+            onMouseUp={() => setLearnClicked(false)}
+            onClick={() => setActiveTab("Flashcards")}
+          >
+            Learn
+          </button>
+        </div>
+      </div>
 
-</div>
-</div>
+      <div className="content">
+        {activeTab === "Home" && <Home />}
+        {activeTab === "Flashcards" && <Flashcards />}
+      </div>
+    </div>
+  );
+}
 
-<div className="content">
-  {activeTab === "Home" && <Home />}
-  {activeTab === "Flashcards" && <Flashcards />}
-
-</div>
-</div>
-);
-};
+export default App;  // <-- REQUIRED
 
 const styles: { [key: string]: React.CSSProperties } = {
   navBarBackground: {
     backgroundColor: "#4A2511",
     display: "flex",
-      flexDirection: "row",  
-    justifyContent: "space-between",   // horizontally center children
-    alignItems: "center",       // vertically center children
+    flexDirection: "row",
+    justifyContent: "space-between",
+    alignItems: "center",
     padding: "0 20px",
     height: "x",
     boxSizing: "border-box",
@@ -78,21 +87,20 @@ const styles: { [key: string]: React.CSSProperties } = {
     gap: "15px",
   },
 
-navBarButton:{
-  border: "1px solid #4A2511",
-  backgroundColor: "rgba(0,0,0,0)",
-  color:"#F4E7D3",
-  fontFamily: "Comic Sans MS, Comic Sans, cursive",
-  fontSize: "24px",
-  cursor: "pointer",
-  justifyContent: "flex-start",
-  marginTop: "-20px"
+  navBarButton: {
+    border: "1px solid #4A2511",
+    backgroundColor: "rgba(0,0,0,0)",
+    color: "#F4E7D3",
+    fontFamily: "Comic Sans MS, Comic Sans, cursive",
+    fontSize: "24px",
+    cursor: "pointer",
+    justifyContent: "flex-start",
+    marginTop: "-20px",
+  },
 
-},
-
-navBarImg:{
-  width: "auto",
-  height: "180px",
-  marginBottom: "0px"
-}
+  navBarImg: {
+    width: "auto",
+    height: "180px",
+    marginBottom: "0px",
+  },
 };

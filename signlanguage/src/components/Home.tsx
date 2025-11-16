@@ -6,14 +6,16 @@ import ScoreDisplay from "./ScoreDisplay";
 export const Home = () => {
 return( 
     <div style={(styles.page)}>
-    <h1>Welcome to ASLearn!</h1>
+    <h1>Welcome to Excel ASL!</h1>
     
     <br></br>
     <h2 style={styles.headingStyle}>Our Mission</h2>
     <p style={styles.paragraphStyle}>
-        At ASLearn, our goal is ACCESSIBILITY, SUPPORT, and LEARN! We want to make it easier for YOU to learn ASL no matter your circumstance.
-        Whether you are a beginner just starting out or longtime ASL fluent brushing up on your skills, our platform provides clear lessons and tools
-        to guide you every step of the way. Learning ASL should be fun and achievable for everyone, and that is what we are here to make happen❤️.
+        At Excel ASL, our mission is simple: ACCESSIBILITY, SUPPORT, and LEARNING for everyone. 
+        We believe that learning American Sign Language should be empowering, fun, and within reach no matter your background or circumstances. 
+        We aim to offer clear, engaging lessons and smart tools so you can practice confidently from the comfort of your home. 
+        By removing barriers and making ASL more approachable, we’re building a more inclusive world where signing is embraced and understood ❤️.
+
     </p>
 
     <div

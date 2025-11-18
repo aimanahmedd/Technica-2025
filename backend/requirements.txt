@@ -1,7 +1,7 @@
 fastapi
 uvicorn[standard]
 python-multipart
-opencv-python
+opencv-python-headless
 mediapipe
 numpy
 protobuf==3.20.*

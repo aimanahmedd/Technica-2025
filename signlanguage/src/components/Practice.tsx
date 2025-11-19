@@ -7,7 +7,7 @@ import { useEffect } from 'react';
 
 function Practice() {
 useEffect(() => {
-  axios.get("http://localhost:8000/test?test_state=false");
+  axios.get(`${process.env.REACT_APP_BACKEND_URL}/test?test_state=false`);
 }, []);
 
   return (

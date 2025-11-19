@@ -17,7 +17,7 @@ const [index, setIndex] = useState(0); // current letter index
 
 useEffect(() => {
   console.log("Backend URL:", process.env.REACT_APP_BACKEND_URL);
-  axios.get(`${process.env.REACT_APP_BACKEND_URL}/test?test_state=true`);
+  axios.get(`${process.env.REACT_APP_BACKEND_URL?.replace(/\/$/, "")}/test?test_state=true`);
 }, []);
 
   useEffect(() => {

@@ -10,7 +10,7 @@ function ProgressCircle(){
     const [percent, setPercent] = useState(0);
 
     useEffect(() => {
-        fetch(`${process.env.REACT_APP_BACKEND_URL?.replace(/\/$/, "")}/progress?user_id=${userId}`)
+        fetch(`${process.env.REACT_APP_BACKEND_URL?.trim().replace(/\/$/, "")}/progress?user_id=${userId}`)
         .then(res => res.json())
         .then(data=>{
             setProgress(data.progress);

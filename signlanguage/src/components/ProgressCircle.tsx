@@ -1,13 +1,16 @@
 import React, {useEffect, useState, CSSProperties} from "react";
 import {CircularProgressbar, buildStyles} from 'react-circular-progressbar';
 import 'react-circular-progressbar/dist/styles.css';
+import { getUserId } from "../utils/getUserId";
+
+const userId = getUserId();
 
 function ProgressCircle(){
     const [progress, setProgress] = useState(0);
     const [percent, setPercent] = useState(0);
 
     useEffect(() => {
-        fetch("http://127.0.0.1:8000/progress")
+        fetch(`${process.env.REACT_APP_BACKEND_URL}/progress?user_id=${userId}`)
         .then(res => res.json())
         .then(data=>{
             setProgress(data.progress);

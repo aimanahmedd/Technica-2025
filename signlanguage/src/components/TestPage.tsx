@@ -1,5 +1,8 @@
 import React, { useRef, useState, useEffect, CSSProperties } from "react";
+import { getUserId } from "../utils/getUserId";
 import axios from "axios";
+
+const userId = getUserId();
 
 export default function TestPage() {
   const videoRef = useRef<HTMLVideoElement | null>(null);
@@ -65,10 +68,11 @@ useEffect(() => {
     const formData = new FormData();
     formData.append("file", blob, "frame.jpg");
     formData.append("letter", letter);
+    formData.append("user_id", userId);
 
     try {
       setStatus("Checking...");
-      const res = await axios.post("http://localhost:8000/check", formData, {
+      const res = await axios.post(`${process.env.REACT_APP_BACKEND_URL}/check`, formData, {
         headers: { "Content-Type": "multipart/form-data" },
       });
       const correct = res.data?.correct;

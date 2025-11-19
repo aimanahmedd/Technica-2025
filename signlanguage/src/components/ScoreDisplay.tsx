@@ -7,7 +7,7 @@ function ScoreDisplay(){
     const [percent, setPercent] = useState(0);
 
 useEffect(() =>{
-    fetch("http://127.0.0.1:8000/progress")
+    fetch(`${process.env.REACT_APP_BACKEND_URL}/progress`)
     .then((res) => res.json())
     .then((data)=>{
         setScore(data.progress);
